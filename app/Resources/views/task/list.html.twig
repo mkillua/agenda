@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+        {% if message %}
+            <div class="alert alert-success alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+                <h4 class="alert-heading">boas noticias,</h4>
+                {{ message }}. </div>
+
+        {% endif %}
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"> <i class="icon-th"></i> </span>
+                    <h3>Minhas tarefas</h3>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome da tarefa</th>
+                                <th>Usuario da tarefa</th>
+                                <th>Data</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for task in tasks %}
+                            <tr class="odd gradeX">
+                                <td{{ task.date.date |date("m/d/Y")}}</td>
+                                <td>{{ task.name }}</td>
+                                <td>{{ task.user }}</td>
+                                <td><a class="btn btn-danger" href="/task/remove/{{ task.id }}">{{ 'excluir' }}</a>
+                                <a class="btn btn-warning" href="{{ 'create_taks' }}">{{ 'editar' }}</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {% endblock %}
+
+            {% block stylesheets %}
+
+{% endblock %}
